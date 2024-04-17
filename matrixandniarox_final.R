@@ -721,7 +721,7 @@ juveniles_list_data <- juveniles_list %>%
 #rename instead of mutate
 #by="genet=sperm_donor"
 
-juvenile_mortality <- read_excel("juvenile_mortality.xlsx", na="NA") %>% clean_names() %>%
+juvenile_mortality <- read_excel("juvenile_mortality_final.xlsx", na="NA") %>% clean_names() %>%
   left_join(.,juveniles_list,by="gantry_position") %>%
   gather(hs_day,mort,x1_19:x2_5) %>%
   mutate(mort = if_else(grepl("A",mort),"0", mort)) %>%
@@ -743,7 +743,7 @@ juvenile_mortality <- read_excel("juvenile_mortality.xlsx", na="NA") %>% clean_n
   mutate(time_days=as.numeric(time_days)) %>%
   distinct()
 
-juvenile_pam_data <- read_excel("juvenile iPAM dataset.xlsx", 3, na="NA") %>% clean_names() %>%
+juvenile_pam_data <- read_excel("juvenile iPAM dataset_final.xlsx", na="NA") %>% clean_names() %>%
   mutate(plug_id=as.factor(plug_id)) %>%
   mutate(gantry_position=as.factor(gantry_position)) %>%
   left_join(.,juveniles_list,by="plug_id") %>%
@@ -756,7 +756,7 @@ juvenile_pam_data <- read_excel("juvenile iPAM dataset.xlsx", 3, na="NA") %>% cl
   mutate(plug_percentdecline_pam=mean(percentdecline_pam,na.rm=TRUE)) %>%
   distinct()
 
-juvenile_pam_long <- read_excel("juvenile iPAM dataset.xlsx", 3, na="NA") %>% clean_names() %>%
+juvenile_pam_long <- read_excel("juvenile iPAM dataset_final.xlsx", na="NA") %>% clean_names() %>%
   gather(hs_day,hs_pam,pam_hs0:pam_hs14) %>%
   separate(hs_day,into = c("trash","hs_timepoint"), sep = "_") %>%
   mutate(plug_id=as.factor(plug_id)) %>%
@@ -867,7 +867,7 @@ juveniles_integral_data <- juveniles_list %>%
 
 #removed samples that fused
 #removed samples that were not ind or agg the entire time
-juvenile_growth_data <- read_excel("juvenile growth metadata.xlsx", 3, na="NA") %>% clean_names() %>%
+juvenile_growth_data <- read_excel("juvenile growth metadata_final.xlsx", na="NA") %>% clean_names() %>%
   arrange(cross_date) %>%
   slice(1:1132) %>%
   filter(!str_detect(id_notes_t0, "F")) %>%
@@ -944,7 +944,7 @@ juvenile_pc <- juvenile_pc %>%
   filter(between(pc_growthpercentage,-100,400))
 
 #juvenile mortality dataset wide#
-juvenile_mortality_wide <- read_excel("juvenile_mortality.xlsx") %>% clean_names() %>%
+juvenile_mortality_wide <- read_excel("juvenile_mortality_final.xlsx") %>% clean_names() %>%
   left_join(.,juveniles_list,by="gantry_position")
 
 sum(stringr::str_count(juvenile_mortality$x2_5, pattern = "D"))
