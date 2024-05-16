@@ -3,6 +3,7 @@ This repository contains all data and code used to analyze the following experim
 Title: Positive associations between growth and thermal tolerance vary across life history stages in a reef-building coral
 
 Authors: removed during anonymized review process
+
 Keywords Heritability, Climate Change, Thermal Tolerance, Recovery, Montipora capitata
 
 Abstract
